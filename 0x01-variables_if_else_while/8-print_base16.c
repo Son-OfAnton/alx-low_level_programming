@@ -10,7 +10,7 @@ int main(void)
 {
 	char d, c;
 
-        d = '0';
+	d = '0';
 	c = 'a';
 	while (d <= '9')
 	{
@@ -23,7 +23,6 @@ int main(void)
 		putchar(c);
 		c++;
 	}
-
 	putchar('\n');
 	return (0);
 }
