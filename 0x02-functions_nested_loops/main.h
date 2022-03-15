@@ -1,10 +1,32 @@
-#include <unistd.h>
+#ifndef FILE_MAIN
+#define FILE_MAIN
 
-/**
- * _putchar - writes the character c to stdout
- * @c: The character to print
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
- */
+void print_alphabet(void);
+
+void print_alphabet_x10(void);
+
+void fibonacci(void);
+
 int _putchar(char c);
+
+int _islower(int c);
+
+int _isalpha(int c);
+
+int print_sign(int n);
+
+int _abs(int);
+
+void jack_bauer(void);
+
+int print_last_digit(int);
+
+void print_times_table(int n);
+
+void times_table(void);
+
+int add(int a, int b);
+
+void print_to_98(int n);
+
+#endif
