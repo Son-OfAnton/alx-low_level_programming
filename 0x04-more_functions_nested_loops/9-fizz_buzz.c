@@ -1,6 +1,9 @@
 #include "stdio.h"
 
 /**
+ * main - entry point
+ * 
+ * Return:1- success
  * do fizz buzz
  */
 
