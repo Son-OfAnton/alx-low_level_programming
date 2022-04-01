@@ -1,4 +1,3 @@
-#include "main.h"
 #include <stdio.h>
 /**
  *main - prints all arguements passed on to it followed by newline
