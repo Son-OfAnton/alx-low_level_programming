@@ -1,97 +1,45 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "main.h"
-/**
- *word_len - finds the length of a word
- *@str:string to test
- *
- *Return:int
- */
-int word_len(char *str)
-{
-	int i = 0, len = 0;
+#include <stdlib.h>
 
-	while (*(str + i) && *(str + i) != ' ')
-	{
-		len++;
-		i++;
-	}
-	return (len);
-}
 /**
- *word_count - counts the number of words
+ * argstostr - Concatenates all arguments of the program into a string;
+ *             arguments are separated by a new line in the string.
+ * @ac: The number of arguments passed to the program.
+ * @av: An array of pointers to the arguments.
  *
- *@str:input
- *
- *Return:(no. of words)
- *
+ * Return: If ac == 0, av == NULL, or the function fails - NULL.
+ *         Otherwise - a pointer to the new string.
  */
-int word_count(char *str)
+char *argstostr(int ac, char **av)
 {
-	int i = 0, len = 0, count = 0;
+	char *str;
+	int arg, byte, index, size = ac;
 
-	for (i = 0; *(str + i); i++)
-	{
-		len++;
-	}
-	for (i = 0; i < len; i++)
-	{
-		if (*(str + i) != ' ')
-		{
-			count++;
-			i += word_len(str + i);
-		}
-	}
-	return (count);
-}
-/**
- *strtow - splits a string into words
- *
- *@str:input
- *
- *Return:0 - success
- *
- */
-char **strtow(char *str)
-{
-	int i, words, w, letters, l;
-	char **p;
+	if (ac == 0 || av == NULL)
+		return (NULL);
 
-	if (str == NULL || str[0] == '\0')
+	for (arg = 0; arg < ac; arg++)
 	{
+		for (byte = 0; av[arg][byte]; byte++)
+			size++;
+	}
+
+	str = malloc(sizeof(char) * size + 1);
+
+	if (str == NULL)
 		return (NULL);
-	}
-	words = word_count(str);
-	if (words == 0)
+
+	index = 0;
+
+	for (arg = 0; arg < ac; arg++)
 	{
-		return (NULL);
+		for (byte = 0; av[arg][byte]; byte++)
+			str[index++] = av[arg][byte];
+
+		str[index++] = '\n';
 	}
-	p = malloc(sizeof(char *) * (words + 1));
-	if (p == NULL)
-	{
-		return (NULL);
-	}
-	for (i = 0; i < words; i++)
-	{
-		while (*(str + w) == ' ')
-		{
-			w++;
-		}
-		letters = word_len(str + w);
-		p[i] = malloc(sizeof(char) * (letters + 1));
-		if (p[i] == NULL)
-		{
-			for (; i >= 0; i--)
-				free(p[i]);
-			free(p);
-			return (NULL);
-		}
-		for (l = 0; l < letters; l++)
-		{
-			p[i][l] = str[w++];
-		}
-		p[i][l] = '\0';
-	}
-	p[i] = NULL;
-	return (p);
+
+	str[size] = '\0';
+
+	return (str);
 }
